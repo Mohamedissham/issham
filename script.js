@@ -159,3 +159,32 @@
                 e.preventDefault();
             });
         });
+
+        // Update your existing mobile menu script
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navLinks = document.getElementById('navLinks');
+const body = document.body;
+
+mobileMenuBtn.addEventListener('click', function() {
+    navLinks.classList.toggle('active');
+    body.classList.toggle('menu-open'); // Add this line
+    
+    const icon = this.querySelector('i');
+    if (icon.classList.contains('fa-bars')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        body.classList.remove('menu-open'); // Add this line
+        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+    });
+});
